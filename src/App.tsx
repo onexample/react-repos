@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment} from 'react';
+import {AppBar, Container, Toolbar, Typography} from '@material-ui/core'
+import Repositories from "./main/repositories/Repositories";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Fragment>
+			<AppBar position="static">
+				<Toolbar>
+					<Typography variant="h6" color="inherit"> React Repositories </Typography>
+				</Toolbar>
+			</AppBar>
+			<Container>
+				<Repositories />
+			</Container>
+		</Fragment>
+	);
 }
 
 export default App;
