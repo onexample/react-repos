@@ -26,7 +26,7 @@ export const SearchForm: FC<SearchFormProps> = (props) => {
 	useEffect(() => {
 		const timeoutId = setTimeout(() => onChange(inputValue), 300);
 		return () => clearTimeout(timeoutId);
-	}, [inputValue])
+	}, [inputValue, onChange])
 
 	return (
 		<FormControl className={classes.root}>

@@ -1,12 +1,53 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Grid} from "@material-ui/core";
 import SearchForm from "./SearchForm";
 import RepositoriesTable from "./RepositoriesTable";
+import {useQuery, gql} from "@apollo/client";
+
+const REPOS = gql`
+	query SearchRepositories($str: String!, $first: Int!, $after: String, $before: String) {
+        search(query: $str, type: REPOSITORY, first: $first, after: $after, before: $before ) {
+            edges {
+                node {
+                    ...on Repository {
+                        name,
+                        stargazers {
+                            totalCount
+                        },
+                        forks {
+                            totalCount
+                        }
+                    }
+                }
+            }
+            pageInfo{
+                startCursor
+                endCursor,
+                hasNextPage
+                hasPreviousPage
+            }
+        }
+	}
+`
 
 export default function Repositories() {
+
+	const { data } = useQuery(REPOS, {
+		variables: {
+			str: "react",
+			first: 10
+		}
+	})
+
 	const handleInputChange = (value: string) => {
 		console.log(value)
 	}
+
+
+	useEffect(() => {
+		console.log(data)
+	},[data])
+
 
 	const rows = [
 		{name: "Test", stars: 100, forks: 345},
