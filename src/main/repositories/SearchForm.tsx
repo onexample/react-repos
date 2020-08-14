@@ -1,6 +1,6 @@
-import React, {ChangeEvent, FC, useEffect, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {FormControl, InputLabel, Input, InputAdornment} from "@material-ui/core";
-import { Search } from '@material-ui/icons'
+import {Search} from '@material-ui/icons'
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
@@ -14,10 +14,10 @@ interface SearchFormProps {
 }
 
 
-export const SearchForm: FC<SearchFormProps> = (props) => {
+export default function SearchForm (props: SearchFormProps) {
 	const { onChange } = props;
 	const classes = useStyles();
-	const [inputValue, setInputValue] = useState<string>("");
+	const [inputValue, setInputValue] = useState<string>("react");
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setInputValue(event.target.value)
@@ -45,5 +45,3 @@ export const SearchForm: FC<SearchFormProps> = (props) => {
 		</FormControl>
 	)
 }
-
-export default SearchForm;
