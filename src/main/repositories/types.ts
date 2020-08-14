@@ -1,27 +1,33 @@
 export interface RepositoryItem {
-	node: {
-		id: string;
-		name: string;
-		stargazers: {
-			totalCount: number
-		},
-		forks: {
-			totalCount: number
-		}
-	}
+    node: {
+        id: string;
+        name: string;
+        stargazers: {
+            totalCount: number;
+        };
+        forks: {
+            totalCount: number;
+        };
+    };
 }
 
-
+export interface RepositoryPageInfo {
+    startCursor: string;
+    endCursor: string;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
+}
 
 export interface RepositoriesData {
-	search: {
-		edges: RepositoryItem[]
-	}
+    search: {
+        edges: RepositoryItem[];
+        pageInfo: RepositoryPageInfo;
+    };
 }
 
 export interface RepositoriesVars {
-	query: string;
-	first: number;
-	before?: string;
-	after?: string;
+    target: string;
+    first: number;
+    before?: string;
+    after?: string;
 }
